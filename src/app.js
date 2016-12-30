@@ -26,18 +26,18 @@ class App extends Component {
     });
   }
 
-  renderContent = () => {
+  renderContent() {
     switch (this.state.loggedIn) {
       case true:
         return (
-          <Button onPress={() => firebase.auth().signOut()}>
-            登出
+          <Button style={{ }} onPress={() => firebase.auth().signOut()}>
+            logout
           </Button>
         );
       case false:
         return <LoginForm />;
       default:
-        return <Spinner size="large" />;
+        return <View style={{ paddingTop: 40 }}><Spinner size="large" /></View>;
     }
   }
 
@@ -45,7 +45,7 @@ class App extends Component {
     return (
       <View>
         <Header headerText="Rainyday" />
-        {this.renderContent()}
+          {this.renderContent()}
       </View>
     );
   }
