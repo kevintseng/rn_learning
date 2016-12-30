@@ -16,10 +16,7 @@ class LoginForm extends Component {
       .catch(() => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(this.onLoginSuccess.bind(this))
-          .catch((error) => {
-            this.onLoginFail.bind(this);
-            console.log(error.code, error.message);
-          });
+          .catch(this.onLoginFail.bind(this));
       });
   }
 
@@ -43,7 +40,7 @@ class LoginForm extends Component {
 
     return (
       <Button onPress={this.onButtonPress.bind(this)}>
-        登入
+        Login
       </Button>
     );
   }

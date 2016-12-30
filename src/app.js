@@ -9,26 +9,24 @@ class App extends Component {
 
   componentWillMount() {
     // Initialize Firebase
-    const firebaseConfig = {
+    firebase.initializeApp({
       apiKey: 'AIzaSyBPCpEc-v-mSf_riAUFd79xDzVgXXg7gN0',
       authDomain: 'rainyday-7fa26.firebaseapp.com',
       databaseURL: 'https://rainyday-7fa26.firebaseio.com',
       storageBucket: 'rainyday-7fa26.appspot.com',
       messagingSenderId: '309937705062'
-    };
-
-    firebase.initializeApp(firebaseConfig);
+    });
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
       } else {
-        this.setState({ logggedIn: false });
+        this.setState({ loggedIn: false });
       }
     });
   }
 
-  renderContent() {
+  renderContent = () => {
     switch (this.state.loggedIn) {
       case true:
         return (
