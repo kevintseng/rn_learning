@@ -50,6 +50,7 @@ class LoginForm extends Component {
       <Card>
         <CardSection>
           <Input
+            autoFocus
             placeholder="user@gmail.com"
             label="Email"
             value={this.state.email}
@@ -59,9 +60,10 @@ class LoginForm extends Component {
 
         <CardSection>
           <Input
+            autoFocus={false}
             secureTextEntry
             placeholder="password"
-            label="Password"
+            label="密碼"
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
           />
@@ -74,6 +76,12 @@ class LoginForm extends Component {
         <CardSection>
           {this.renderButton()}
         </CardSection>
+
+        <CardSection>
+          <Text style={styles.forgetStyle}>
+            忘記密碼？
+          </Text>
+        </CardSection>
       </Card>
     );
   }
@@ -84,6 +92,9 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
+  },
+  forgetStyle: {
+    margin: 10,
   }
 };
 

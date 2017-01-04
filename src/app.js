@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import firebase from 'firebase';
-import { Header, Button, Spinner } from './components/common';
+import { NavBar, Button, Spinner } from './components/common';
 import LoginForm from './components/LoginForm';
+import Start from './components/Start';
 
 class App extends Component {
   state = { loggedIn: null };
@@ -31,24 +32,45 @@ class App extends Component {
       case true:
         return (
           <Button onPress={() => firebase.auth().signOut()}>
-            logout
+            Logout
           </Button>
         );
       case false:
-        return <LoginForm />;
+        return (
+          <View>
+            <Start />
+            <LoginForm />
+          </View>
+        );
       default:
-        return <View style={{ paddingTop: 40 }}><Spinner size="large" /></View>;
+        return (
+          <Spinner size="large" />
+        );
     }
   }
 
   render() {
     return (
-      <View>
-        <Header headerText="Rainyday" />
+      <View style={styles.containerStyle}>
+        <NavBar headerText="Rainyday" />
+        <View style={styles.contentStyle}>
           {this.renderContent()}
+        </View>
       </View>
     );
   }
 }
+
+const styles = {
+  containerStyle: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+  },
+  contentStyle: {
+    marginBottom: 30,
+  }
+
+};
 
 export default App;
